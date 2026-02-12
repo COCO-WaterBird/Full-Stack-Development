@@ -7,7 +7,7 @@ export function BlogListing() {
   return (
     <>
       {/* Header */}
-      <header className="mb-6">
+      <header className="mb-6 hidden md:block">
         <h1 className="text-4xl mb-2">The Cabination Blogs</h1>
         <p
           className="text-gray-600"
@@ -18,7 +18,7 @@ export function BlogListing() {
       </header>
 
       {/* Intro Text */}
-      <div className="mb-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
+      <div className="mb-8 p-6 bg-gray-50 rounded-lg border border-gray-200 hidden md:block">
         <p className="text-gray-700 leading-relaxed">
           Welcome to The Cabination blog – your ultimate resource for kitchen design inspiration, 
           cabinet selection guides, and remodeling expertise. Whether you're planning a complete 
@@ -30,7 +30,7 @@ export function BlogListing() {
       </div>
 
       {/* Blog Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
         {blogPosts.map((post) => (
           <BlogPostCard
             key={post.id}

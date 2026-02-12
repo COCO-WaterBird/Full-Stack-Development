@@ -1,7 +1,8 @@
+import React from "react";
 import { Search, Heart, Folder } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import { blogPosts } from "../data/blog-posts";
-// import { Breadcrumb } from "./breadcrumb";
+
 
 const categories = [
   "Eco-friendly Cabinets",
@@ -17,50 +18,11 @@ const categories = [
 export function BlogSidebar() {
   const location = useLocation();
   
-  // Build breadcrumb items based on current path
-  // const makeLabel = (seg: string) =>
-  //   decodeURIComponent(seg)
-  //     .replace(/-/g, " ")
-  //     .split(" ")
-  //     .map(s => s.charAt(0).toUpperCase() + s.slice(1))
-  //     .join(" ");
 
-  // let breadcrumbItems: { label: string; href?: string }[] = [];
-  // const path = location.pathname || "/";
-  // if (path === "/") {
-  //   // Home page -> show Blog after Home
-  //   breadcrumbItems = [{ label: "Blog", href: "/" }];
-  // } else if (path.startsWith("/category/")) {
-  //   const seg = path.split("/")[2] || "";
-  //   breadcrumbItems = [
-  //     { label: "Blog", href: "/" },
-  //     { label: makeLabel(seg) },
-  //   ];
-  // } else if (path.startsWith("/blog/")) {
-  //   const idStr = path.split("/")[2] || "";
-  //   const id = Number(idStr);
-  //   const post = blogPosts.find((p) => p.id === id);
-  //   breadcrumbItems = [{ label: "Blog", href: "/" }];
-  //   if (post) {
-  //     breadcrumbItems.push({ label: post.title });
-  //   }
-  // } else {
-  //   const seg = path.split("/").filter(Boolean).pop() || "";
-  //   breadcrumbItems = seg ? [{ label: makeLabel(seg) }] : [];
-  // }
-  
-  // Debug: log pathname so we can confirm what the router reports
-  // (remove these logs after debugging)
-  // console.log can be viewed in the browser DevTools console
-  // e.g. console shows: BlogSidebar pathname: /blog/123
-  // Uncomment the next line if you want to debug in the browser
-  // console.log("BlogSidebar pathname:", location.pathname);
-
-  // Hide sidebar breadcrumb on any /blog path (covers /blog, /blog/, /blog/:id)
   const showSidebarBreadcrumb = !/^\/blog(\/|$)/.test(location.pathname);
 
   return (
-  <aside className="w-[400px] flex-shrink-0 pt-6 px-5 space-y-5 self-start sticky top-5">
+  <aside className="w-full lg:w-[400px] flex-shrink-0 pt-4 lg:pt-6 px-5 space-y-5 lg:self-start lg:sticky lg:top-5">
     {/* <aside className="w-[320px] flex-shrink-0 px-10 pt-10 space-y-6 self-start sticky top-5"> */}
       {/* Breadcrumb (placed above search) - only show on non-article pages */}
       {/* {showSidebarBreadcrumb && <Breadcrumb items={breadcrumbItems} />} */}
@@ -76,47 +38,77 @@ export function BlogSidebar() {
         />
       </div>
 
-      {/* Promotional cards - shown only on Home and Category pages */}
+      {/* Promotional cards - shown only on Home and Category pages (desktop only) */}
       {(() => {
         const showPromos = location.pathname === '/' || location.pathname.startsWith('/category');
         if (!showPromos) return null;
         return (
-          <>
-            {/* FREE 3D Kitchen Design Card */}
-            <div className="border border-gray-200 rounded-lg overflow-hidden">
-              <div className="p-4 space-y-3">
-                <div className="relative bg-gray-100 rounded aspect-video flex items-center justify-center">
-                  <Heart className="w-12 h-12 text-gray-300" />
+          <div className="hidden lg:block space-y-8">
+              {/* FREE 3D Kitchen Design Card */}
+              <div className="rounded-xl overflow-hidden shadow-lg group">
+                <div className="relative overflow-hidden">
+                  {/* 背景图：通过 brightness 降低亮度 50% */}
+                  <img
+                    src="/images/kitchen-design.jpg"
+                    alt="FREE 3D Kitchen Design"
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={{ filter: 'brightness(0.5)' }} 
+                  />
+                  
+                  {/* 文字叠加层（略偏下） */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+                    <h3 className="text-white text-5xl 2xl:text-6xl font-black mb-2 leading-none mt-10 tracking-[0.1em]">
+                      FREE 3D
+                    </h3>
+                    <p className="text-white text-lg 2xl:text-xl font-light tracking-[0.2em] uppercase">
+                      Kitchen Design
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="font-semibold text-lg">FREE 3D Kitchen Design</h3>
-                  <button className="w-full py-2 px-4 border border-gray-900 rounded hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
-                    GET STARTED →
-                  </button>
-                </div>
-              </div>
-            </div>
 
-            {/* 1 FREE Door Sample Card */}
-            <div className="border border-gray-200 rounded-lg overflow-hidden">
-              <div className="p-4 space-y-3">
-                <div className="relative bg-gray-100 rounded aspect-video flex items-center justify-center">
-                  <Heart className="w-12 h-12 text-gray-300" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-semibold text-lg">1 FREE Door Sample</h3>
-                  <button className="w-full py-2 px-4 border border-gray-900 rounded hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
-                    ORDER NOW →
-                  </button>
-                </div>
+                {/* 按钮部分 */}
+                <button 
+                  className="w-full py-2 px-4 font-bold text-white hover:brightness-110 transition-all flex items-center justify-center gap-2 text-base tracking-widest" 
+                  style={{ backgroundColor: '#99cc33' }}
+                >
+                  GET STARTED 
+                  <span className="text-lg">→</span>
+                </button>
               </div>
-            </div>
-          </>
+
+              {/* 1 FREE Door Samples Card */}
+              <div className="rounded-xl overflow-hidden shadow-lg group">
+                <div className="relative overflow-hidden">
+                  <img
+                    src="/images/DoorSamples.jpg"
+                    alt="1 FREE Door Samples"
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={{ filter: 'brightness(0.5)' }}
+                  />
+                  {/* 文字叠加层（略偏下） */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+                    <h3 className="text-white text-5xl 2xl:text-6xl font-black mb-2 leading-none mt-10 tracking-[0.1em]">
+                      1 FREE
+                    </h3>
+                    <p className="text-white text-lg 2xl:text-xl font-light tracking-[0.2em] uppercase">
+                      Door Samples
+                    </p>
+                  </div>
+                </div>
+                <button
+                  className="w-full py-2 px-4 font-bold text-white hover:brightness-110 transition-all flex items-center justify-center gap-2 text-base tracking-widest"
+                  style={{ backgroundColor: '#99cc33' }}
+                >
+                  ORDER NOW
+                  <span className="text-lg">→</span>
+                </button>
+              </div>
+          </div>
         );
       })()}
 
-      {/* Categories */}
-      <div className="space-y-3">
+      {/* Categories (desktop only) */}
+      <div className="space-y-3 hidden lg:block">
         <h3 className="font-semibold text-lg">Categories</h3>
         <nav className="space-y-2">
           {categories.map((category, index) => {

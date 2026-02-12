@@ -23,12 +23,14 @@ export function Layout({ children, hideDividers, mainPadding, breadcrumb, rightS
         </div>
       )}
 
-      <div className="flex items-start max-w-[1800px] mx-auto pt-2">
+      <div className="flex flex-col lg:flex-row items-start max-w-[1800px] mx-auto pt-2 gap-4 lg:gap-8">
         {/* Sidebar */}
         <BlogSidebar />
 
         {/* Main Content */}
-        <main className={`flex-1 ${hideDividers ? "" : "border-l border-gray-200"}`}>
+        {/* <main className={`flex-1 ${hideDividers ? "" : "border-l border-gray-200"}`}> */}
+        <main className="flex-1">
+        
           <div className={`max-w-[1280px] ${mainPadding ?? 'pt-6'} px-8`}>
             {children}
           </div>
@@ -36,7 +38,7 @@ export function Layout({ children, hideDividers, mainPadding, breadcrumb, rightS
 
         {/* Optional right sidebar */}
         {rightSidebar ? (
-          <div className="flex-shrink-0 self-start sticky top-5">
+          <div className="hidden lg:block flex-shrink-0 self-start lg:sticky lg:top-5">
             {rightSidebar}
           </div>
         ) : null}
