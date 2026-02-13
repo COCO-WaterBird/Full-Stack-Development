@@ -17,9 +17,8 @@ const categories = [
 
 export function BlogSidebar() {
   const location = useLocation();
-  
 
-  const showSidebarBreadcrumb = !/^\/blog(\/|$)/.test(location.pathname);
+  const showSidebarBreadcrumb = !/^\/blog(\/|$)/.test(location.pathname ?? "");
 
   return (
   <aside className="w-full lg:w-[400px] flex-shrink-0 pt-4 lg:pt-6 px-5 space-y-5 lg:self-start lg:sticky lg:top-5">
@@ -40,7 +39,7 @@ export function BlogSidebar() {
 
       {/* Promotional cards - shown only on Home and Category pages (desktop only) */}
       {(() => {
-        const showPromos = location.pathname === '/' || location.pathname.startsWith('/category');
+        const showPromos = location.pathname === '/' || (location.pathname ?? '').startsWith('/category');
         if (!showPromos) return null;
         return (
           <div className="hidden lg:block space-y-8">
@@ -57,7 +56,8 @@ export function BlogSidebar() {
                   
                   {/* 文字叠加层（略偏下） */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-                    <h3 className="text-white text-4xl 2xl:text-5xl font-bold mb-2 leading-none mt-35 tracking-[0.1em]">
+                    <h3 className="text-white text-4xl 2xl:text-5xl font-bold mb-2 leading-none mt-10
+                     tracking-[0.1em]">
                       FREE 3D
                     </h3>
                     <h3 className="text-white text-4xl 2xl:text-5xl font-bold leading-none tracking-tight whitespace-nowrap">
@@ -87,7 +87,7 @@ export function BlogSidebar() {
                   />
                   {/* 文字叠加层（略偏下） */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-                    <h3 className="text-white text-4xl 2xl:text-5xl font-bold mb-2 leading-none mt-35 tracking-[0.1em]">
+                    <h3 className="text-white text-4xl 2xl:text-5xl font-bold mb-2 leading-none mt-10 tracking-[0.1em]">
                       1 FREE
                     </h3>
                     <h3 className="text-white text-4xl 2xl:text-5xl font-bold leading-none tracking-tight whitespace-nowrap">
