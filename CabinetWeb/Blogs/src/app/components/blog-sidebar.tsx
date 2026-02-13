@@ -52,17 +52,17 @@ export function BlogSidebar() {
                     src="/images/kitchen-design.jpg"
                     alt="FREE 3D Kitchen Design"
                     className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
-                    style={{ filter: 'brightness(0.5)' }} 
+                    style={{ filter: 'brightness(0.7)' }} 
                   />
                   
                   {/* 文字叠加层（略偏下） */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-                    <h3 className="text-white text-5xl 2xl:text-6xl font-black mb-2 leading-none mt-10 tracking-[0.1em]">
+                    <h3 className="text-white text-4xl 2xl:text-5xl font-bold mb-2 leading-none mt-35 tracking-[0.1em]">
                       FREE 3D
                     </h3>
-                    <p className="text-white text-lg 2xl:text-xl font-light tracking-[0.2em] uppercase">
+                    <h3 className="text-white text-4xl 2xl:text-5xl font-bold leading-none tracking-tight whitespace-nowrap">
                       Kitchen Design
-                    </p>
+                    </h3>
                   </div>
                 </div>
 
@@ -83,16 +83,16 @@ export function BlogSidebar() {
                     src="/images/DoorSamples.jpg"
                     alt="1 FREE Door Samples"
                     className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
-                    style={{ filter: 'brightness(0.5)' }}
+                    style={{ filter: 'brightness(0.7)' }}
                   />
                   {/* 文字叠加层（略偏下） */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-                    <h3 className="text-white text-5xl 2xl:text-6xl font-black mb-2 leading-none mt-10 tracking-[0.1em]">
+                    <h3 className="text-white text-4xl 2xl:text-5xl font-bold mb-2 leading-none mt-35 tracking-[0.1em]">
                       1 FREE
                     </h3>
-                    <p className="text-white text-lg 2xl:text-xl font-light tracking-[0.2em] uppercase">
-                      Door Samples
-                    </p>
+                    <h3 className="text-white text-4xl 2xl:text-5xl font-bold leading-none tracking-tight whitespace-nowrap">
+                      Door Sample
+                    </h3>
                   </div>
                 </div>
                 <button
