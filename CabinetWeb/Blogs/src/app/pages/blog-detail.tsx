@@ -2,7 +2,7 @@ import { useParams, Link, Navigate } from "react-router";
 import { User, Calendar, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { RightSidebar } from "../components/right-sidebar";
-import { Layout } from "../components/layout";
+import { SiteLayout } from "../components/site-layout";
 import { BlogPostCard } from "../components/blog-post-card";
 // Breadcrumb moved to left sidebar; removed inline Breadcrumb here
 // add Breadcrumbs
@@ -45,7 +45,7 @@ export function BlogDetail() {
     .slice(0, 3);
 
   return (
-    <Layout
+    <SiteLayout
       mainPadding="pt-6"
       breadcrumb={<Breadcrumb items={breadcrumbItems} />}
       rightSidebar={<RightSidebar />}
@@ -146,6 +146,6 @@ export function BlogDetail() {
           </section>
         )}
       </article>
-    </Layout>
+    </SiteLayout>
   );
 }

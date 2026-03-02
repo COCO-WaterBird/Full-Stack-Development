@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { User, Calendar, ChevronDown } from "lucide-react";
-import { Layout } from "../../components/layout";
+import { SiteLayout } from "../../components/site-layout";
 import { Breadcrumb } from "../../components/breadcrumb";
 import { BlogPostCard } from "../../components/blog-post-card";
 import { RightSidebar } from "../../components/right-sidebar";
@@ -49,7 +49,7 @@ export default async function BlogDetailRoute({ params }: Props) {
     .slice(0, 3);
 
   return (
-    <Layout
+    <SiteLayout
       hideDividers
       mainPadding="pt-6"
       breadcrumb={<Breadcrumb items={breadcrumbItems} />}
@@ -127,6 +127,6 @@ export default async function BlogDetailRoute({ params }: Props) {
           </section>
         ) : null}
       </article>
-    </Layout>
+    </SiteLayout>
   );
 }

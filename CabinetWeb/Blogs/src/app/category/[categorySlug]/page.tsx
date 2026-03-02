@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Layout } from "../../components/layout";
+import { SiteLayout } from "../../components/site-layout";
 import { Breadcrumb } from "../../components/breadcrumb";
 import { BlogPostCard } from "../../components/blog-post-card";
 import { blogPosts } from "../../data/blog-posts";
@@ -45,7 +45,7 @@ export default async function CategoryRoute({ params }: Props) {
   );
 
   return (
-    <Layout
+    <SiteLayout
       hideDividers
       mainPadding="pt-9"
       breadcrumb={
@@ -101,6 +101,6 @@ export default async function CategoryRoute({ params }: Props) {
           </p>
         </div>
       )}
-    </Layout>
+    </SiteLayout>
   );
 }
