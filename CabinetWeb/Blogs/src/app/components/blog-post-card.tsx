@@ -1,5 +1,4 @@
-import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { Link } from "react-router";
+import Link from "next/link";
 
 interface BlogPostCardProps {
   id: number;
@@ -12,15 +11,16 @@ interface BlogPostCardProps {
 
 export function BlogPostCard({ id, imageUrl, title, excerpt, date, featured = false }: BlogPostCardProps) {
   return (
-    <Link to={`/blog/${id}`}>
+    <Link href={`/blog/${id}`}>
       <article className="group cursor-pointer">
         <div className="space-y-3">
           {/* Image */}
           <div className="relative bg-gray-100 rounded overflow-hidden aspect-video">
-            <ImageWithFallback
+            <img
               src={imageUrl}
               alt={title}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              loading="lazy"
             />
           </div>
 

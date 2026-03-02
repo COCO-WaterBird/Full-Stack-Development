@@ -1,7 +1,8 @@
+"use client";
 import React from "react";
 import { Search, Heart, Folder } from "lucide-react";
-import { Link, useLocation } from "react-router";
-import { blogPosts } from "../data/blog-posts";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 
 const categories = [
@@ -16,9 +17,9 @@ const categories = [
 ];
 
 export function BlogSidebar() {
-  const location = useLocation();
+  const pathname = usePathname();
 
-  const showSidebarBreadcrumb = !/^\/blog(\/|$)/.test(location.pathname ?? "");
+  const showSidebarBreadcrumb = !/^\/blog(\/|$)/.test(pathname ?? "");
 
   return (
   <aside className="w-full lg:w-[400px] flex-shrink-0 pt-4 lg:pt-6 px-5 space-y-5 lg:self-start lg:sticky lg:top-5">
@@ -39,7 +40,7 @@ export function BlogSidebar() {
 
       {/* Promotional cards - shown only on Home and Category pages (desktop only) */}
       {(() => {
-        const showPromos = location.pathname === '/' || (location.pathname ?? '').startsWith('/category');
+        const showPromos = pathname === '/' || (pathname ?? '').startsWith('/category');
         if (!showPromos) return null;
         return (
           <div className="hidden lg:block space-y-8">
@@ -56,8 +57,7 @@ export function BlogSidebar() {
                   
                   {/* 文字叠加层（略偏下） */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-                    <h3 className="text-white text-4xl 2xl:text-5xl font-bold mb-2 leading-none mt-10
-                     tracking-[0.1em]">
+                    <h3 className="text-white text-4xl 2xl:text-5xl font-bold mb-2 leading-none mt-10 tracking-[0.1em]">
                       FREE 3D
                     </h3>
                     <h3 className="text-white text-4xl 2xl:text-5xl font-bold leading-none tracking-tight whitespace-nowrap">
@@ -113,12 +113,12 @@ export function BlogSidebar() {
         <nav className="space-y-2">
           {categories.map((category, index) => {
             const categoryPath = `/category/${encodeURIComponent(category.toLowerCase().replace(/\s+/g, '-'))}`;
-            const isActive = location.pathname === categoryPath;
+            const isActive = pathname === categoryPath;
             
             return (
               <Link
                 key={index}
-                to={categoryPath}
+                href={categoryPath}
                 className={`flex items-center gap-2 py-1 hover:text-gray-600 transition-colors ${
                   isActive ? 'text-blue-600 font-semibold' : 'text-gray-900'
                 }`}
